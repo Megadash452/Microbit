@@ -73,43 +73,33 @@ def check_horizontal_win():
             break
         
 def check_vertical_win():
-#     width = len(MAP[0])
-#     height = len(MAP)
+    width = len(MAP[0])
+    height = len(MAP)
 
-#     # bufs act like a streak (so if 2 p1 pieces are found, streak is 2 so buf is 2)
-#     p1_buf = 0
-#     p2_buf = 0
+    # bufs act like a streak (so if 2 p1 pieces are found, streak is 2 so buf is 2)
+    p1_buf = 0
+    p2_buf = 0
 
-#     for j in range(width):
-#         for i in range(height):
-#             pixel = MAP[i][j]
+    for j in range(width):
+        for i in range(height):
+            pixel = MAP[i][j]
 
-#             if (pixel == P1_COL):
-#                 # increment player streak
-#                 p1_buf += 1
-#                 p2_buf = 0 # clear other player bufs
-#             elif (pixel == P2_COL):
-#                 p1_buf = 0 # clear other player bufs
-#                 # increment player streak
-#                 p2_buf += 1
+            if (pixel == P1_COL):
+                # increment player streak
+                p1_buf += 1
+                p2_buf = 0 # clear other player bufs
+            elif (pixel == P2_COL):
+                p1_buf = 0 # clear other player bufs
+                # increment player streak
+                p2_buf += 1
 
-#             # check for streak of 4 from all players
-#             if p1_buf >= 4:
-#                 # PLAYER 1 WINS
-#                 return 0
-#             elif p2_buf >= 4:
-#                 # PLAYER 2 WINS
-#                 return 1
-    for i in range(len(MAP)):
-        vertical = []
-        for j in range(len(MAP)):
-            vertical.append(MAP[j][i])
-        if [P1_COL] * 4 == vertical[0:4] or [P1_COL] * 4 == vertical[1:5]:
-            display.scroll("Player 1 Wins!")
-            break
-        elif [P2_COL] * 4 == vertical[0:4] or [P2_COL] * 4 == vertical[1:5]:
-            display.scroll("Player 2 Wins!")
-            break
+            # check for streak of 4 from all players
+            if p1_buf >= 4:
+                display.scroll("Player 1 Wins!")
+                return 1
+            elif p2_buf >= 4:
+                display.scroll("Player 1 Wins!")
+                return 2
 
 # right down diagonal
 def check_diagonal_0_win():
