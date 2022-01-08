@@ -10,6 +10,7 @@ We included a few python programs to test out this microbit emulator
 - ***TODO:*** Fix vertical and diagonal wins (they don't work)
 ## 2. [Amogus](Tests/amogus.py)
 - (sus)
+- Tests how the microbit displays image lists.
 - Pressing **button B** shows an animation of the Among Us crewmate fading in.
 - Pressing **button A** shows an animation of the Among US crewmate fading out.
-- Note: the crewmate is not the imposter
+- Note: the crewmate is not the imposter!
