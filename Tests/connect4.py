@@ -1,7 +1,7 @@
 from microbit import *
 
 
-BLINK_INTERVAL = 2000
+BLINK_INTERVAL = 100
 TIME_SINCE_START = 0
 CURRENT_PLAYER = 1 # two players, 1 and 2
 
@@ -36,8 +36,8 @@ def li_2d_to_1d(li: list):
 def place_piece(position: int, player: int):
     if not (0 <= position <= 4):
         raise IndexError("'position' argument can only within range 0 and 4")
-    if not (0 <= player <= 1):
-        raise IndexError("'player' argument can only within range 0 and 1")
+    if not (1 <= player <= 2):
+        raise IndexError("'player' argument can only within range 1 and 2")
     
     
     # TODO: attempt to place piece at y4, but first check if there is already a piece first, 
@@ -170,23 +170,23 @@ def check_win():
 while True:
     # start_touch_logo_up_event()
 
-    # toggle if the player light is on every second
+    # toggle if the player light is on every second (for blinking)
     if TIME_SINCE_START % BLINK_INTERVAL == 0:
         player_light_on = not player_light_on
 
 
     # display the map
-    display.show(Image(5, 5, bytearray(li_2d_to_1d(MAP))))
-
+    show = li_2d_to_1d(MAP)
 
     # set the blinking player light on the first row (y0)
-    # TODO: set the player piece pixel to the MAP list so it shows cprrectyl
     if player_light_on and CURRENT_PLAYER == 1:
-        display.set_pixel(player_position, 0, P1_COL)
+        show[player_position] = P1_COL
     elif player_light_on and CURRENT_PLAYER == 2:
-        display.set_pixel(player_position, 0, P2_COL)
+        show[player_position] = P2_COL
     else:
-        display.set_pixel(player_position, 0, 0)
+        show[player_position] = 0
+
+    display.show(Image(5, 5, bytearray(show)))
 
 
     # Moving the player piece (it wraps)
@@ -222,7 +222,7 @@ while True:
     #         CURRENT_PLAYER == 0
 
 
-    # check_win()
+    check_win()
 
 
     # increment time at the end
