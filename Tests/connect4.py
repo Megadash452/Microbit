@@ -64,6 +64,8 @@ def place_piece(position: int, player: int):
 
 def check_horizontal_win():
     # TODO: revisit and modify
+    # Uses indexing and slicing to tell if there are 4 consecutive 9s or 4s LED lvl and then displays
+    # either P1 or P2 win message
     for i in MAP:
         if [P1_COL] * 4 == i[0:4] or [P1_COL] * 4 == i[1:5]:
             display.scroll("Player 1 Wins!")
