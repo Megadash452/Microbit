@@ -40,7 +40,7 @@ def place_piece(position: int, player: int):
         raise IndexError("'player' argument can only within range 1 and 2")
     
     
-    # TODO: attempt to place piece at y4, but first check if there is already a piece first, 
+    # attempt to place piece at y4, but first check if there is already a piece first, 
     # then move up to y3, then check if there is a piece there, then move to y2 ....
     i = 4
     while i >= 0:
@@ -130,8 +130,8 @@ def check_diagonal_1_win():
 def check_win():
     check_horizontal_win()
     check_vertical_win()
-    # check_diagonal_0_win()
-    # check_diagonal_1_win()
+    check_diagonal_0_win()
+    check_diagonal_1_win()
 
 
     # check if the map is full (meaning theres no more spots to place pieces)
