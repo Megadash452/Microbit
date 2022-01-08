@@ -12,4 +12,4 @@ We included a few python programs to test out this microbit emulator
 - (sus)
 - Pressing **button B** shows an animation of the Among Us crewmate fading in.
 - Pressing **button A** shows an animation of the Among US crewmate fading out.
-- Note: teh crewmate is not the imposter
+- Note: the crewmate is not the imposter
