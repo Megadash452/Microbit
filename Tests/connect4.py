@@ -175,7 +175,8 @@ while True:
         player_light_on = not player_light_on
 
 
-    # display the map
+
+    # prepare for displaying the map
     show = li_2d_to_1d(MAP)
 
     # set the blinking player light on the first row (y0)
@@ -183,10 +184,12 @@ while True:
         show[player_position] = P1_COL
     elif player_light_on and CURRENT_PLAYER == 2:
         show[player_position] = P2_COL
-    else:
-        show[player_position] = 0
+    # turns off the pixel completely. if want transparency leave this as comment
+    # else:
+    #     show[player_position] = 0
 
     display.show(Image(5, 5, bytearray(show)))
+
 
 
     # Moving the player piece (it wraps)
@@ -209,6 +212,7 @@ while True:
             player_position = 0
         else:
             player_position += 1
+
 
     
     # Player confirms position, places piece, and passes it to the other player
