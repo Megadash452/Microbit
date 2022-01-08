@@ -98,7 +98,7 @@ def check_vertical_win():
                 display.scroll("Player 1 Wins!")
                 return 1
             elif p2_buf >= 4:
-                display.scroll("Player 1 Wins!")
+                display.scroll("Player 2 Wins!")
                 return 2
 
 # right down diagonal
