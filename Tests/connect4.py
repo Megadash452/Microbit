@@ -1,7 +1,7 @@
 from microbit import *
 
 
-BLINK_INTERVAL = 100
+BLINK_INTERVAL = 50
 TIME_SINCE_START = 0
 CURRENT_PLAYER = 1 # two players, 1 and 2
 
