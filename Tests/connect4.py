@@ -103,36 +103,49 @@ def check_vertical_win():
                 display.scroll("Player 2 Wins!")
                 return 2
 
-# right down diagonal
-def check_diagonal_0_win():
-    dia_right = []
-    for i in range(len(MAP)):
-        dia_right.append(MAP[i][i])
+#Diagonals win check
+#Credits to https://stackoverflow.com/questions/6313308/get-all-the-diagonals-in-a-matrix-list-of-lists-in-python discussion for the help and understanding of implementing diagonals in lists
+def check_diagonal_win():
+    #Width and height dimension of the map
+    width = len(MAP[0])
+    length = len(MAP)
+    #Creates a certain number of list based on how many diagonals can be formed for the 2d list (for this 5 by 5 map, we only need 9 lists; be it for left or right diagonals)
+    leftup_diag = [[] for i in range(width + length - 1)] 
+    rightdn_diag = [[] for i in range(width + length - 1)] 
     
-    # TODO: revisit and modify
-    if [P1_COL] * 4 == dia_right[0:4] or [P1_COL] * 4 == dia_right[1:5]:
+    for col in range(width): 
+      for row in range(length):
+        #Index at certain lists from the leftup_diag and 
+        #appends the certain diagonal value to that list
+        #Ex: at Index 0, append the leftup_diag[0] list with the value MAP[0][0], then go to index 1 and append it with the value MAP[1][0] and so on so forth
+        leftup_diag[col+row].append(MAP[row][col])
+    
+    for col in range(width):
+      for row in range(length):
+        #Index at certain lists from the rightdn_diag and 
+        #appends the certain diagonal value to that list
+        #Ex: at Index 0, append the rightdn_diag[0] list with the value MAP[4][0], then go to index 1 and append it with the value from MAP[3][0]
+        rightdn_diag[col+row].append(MAP[length - row - 1][col])
+    
+    #Checks if there are 4 consecutive player colors from left diagonals
+    for left_dia in leftup_diag:
+      if [P1_COL] * 4 == left_dia[0:4] or [P1_COL] * 4 == left_dia[1:5]:
         display.scroll("Player 1 Wins!")
-    elif [P2_COL] * 4 == dia_right[0:4] or [P2_COL] * 4 == dia_right[1:5]:
+      elif [P2_COL] * 4 == left_dia[0:4] or [P2_COL] * 4 == left_dia[1:5]:
+        display.scroll("Player 2 Wins!")
+    
+    #Checks if there are 4 consecutive player colors from right diagonals
+    for right_dia in rightdn_diag:
+      if [P1_COL] * 4 == right_dia[0:4] or [P1_COL] * 4 == right_dia[1:5]:
+        display.scroll("Player 1 Wins!")
+      elif [P2_COL] * 4 == right_dia[0:4] or [P2_COL] * 4 == right_dia[1:5]:
         display.scroll("Player 2 Wins!")
 
-# left up diagonal
-def check_diagonal_1_win():
-    dia_left = []
-    for i in range(len(MAP)):
-        dia_left.append(MAP[i][len(MAP) - 1 - i])
-    
-    # TODO: revisit and modify
-    if [P1_COL] * 4 == dia_left[0:4] or [P1_COL] * 4 == dia_left[1:5]:
-        display.scroll("Player 1 Wins!")
-    elif [P2_COL] * 4 == dia_left[0:4] or [P2_COL] * 4 == dia_left[1:5]:
-        display.scroll("Player 2 Wins!")
 
 def check_win():
     check_horizontal_win()
     check_vertical_win()
-    check_diagonal_0_win()
-    check_diagonal_1_win()
-
+    check_diagonal_win()
 
     # check if the map is full (meaning theres no more spots to place pieces)
     found_0_ = False
