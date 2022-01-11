@@ -42,6 +42,8 @@ def switch_player():
 
 
 def move(direction: str):
+    global player_position
+
     if direction == "right":
         if player_position >= 4:
             player_position = 0
