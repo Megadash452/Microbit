@@ -119,9 +119,6 @@ def check_diagonal_win():
         #appends the certain diagonal value to that list
         #Ex: at Index 0, append the leftup_diag[0] list with the value MAP[0][0], then go to index 1 and append it with the value MAP[1][0] and so on so forth
         leftup_diag[col+row].append(MAP[row][col])
-    
-    for col in range(width):
-      for row in range(length):
         #Index at certain lists from the rightdn_diag and 
         #appends the certain diagonal value to that list
         #Ex: at Index 0, append the rightdn_diag[0] list with the value MAP[4][0], then go to index 1 and append it with the value from MAP[3][0]
