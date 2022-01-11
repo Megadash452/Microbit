@@ -33,10 +33,26 @@ def li_2d_to_1d(li: list):
 
 
 def switch_player():
+    global CURRENT_PLAYER
+
     if CURRENT_PLAYER == 1:
         CURRENT_PLAYER = 2
     elif CURRENT_PLAYER == 2:
         CURRENT_PLAYER = 1
+
+
+def move(direction: str):
+    if direction == "right":
+        if player_position >= 4:
+            player_position = 0
+        else:
+            player_position += 1
+
+    elif direction == "left":
+        if player_position <= 0:
+            player_position = 4
+        else:
+            player_position -= 1
 
 
 def place_piece(position: int, player: int):
@@ -211,18 +227,11 @@ while True:
 
     # Moving the player piece (it wraps)
     # if button_a.was_pressed():  # Conventional controls with touch logo
-    #     if player_position <= 0:
-    #         player_position = 4
-    #     else:
-    #         player_position -= 1
+    #     move("left")
     if button_a.was_pressed(): # controls with no touch logo
         place_piece(player_position, CURRENT_PLAYER)
-
     if button_b.was_pressed():
-        if player_position >= 4:
-            player_position = 0
-        else:
-            player_position += 1
+        move("right")
 
 
     check_win()
