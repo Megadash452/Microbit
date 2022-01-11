@@ -32,6 +32,12 @@ def li_2d_to_1d(li: list):
     return result
 
 
+def switch_player():
+    if CURRENT_PLAYER == 1:
+        CURRENT_PLAYER = 2
+    elif CURRENT_PLAYER == 2:
+        CURRENT_PLAYER = 1
+
 
 def place_piece(position: int, player: int):
     if not (0 <= position <= 4):
@@ -54,6 +60,9 @@ def place_piece(position: int, player: int):
             elif CURRENT_PLAYER == 2:
                 # if player 2 is playing, the pixel is dim
                 MAP[i][position] = P2_COL
+
+            # once a piece is placed switch the players
+            switch_player()
 
             # exit once a piece is placed
             break
@@ -161,26 +170,19 @@ def check_win():
 
         
 
-# T_L_WAS_PRESSED = False
-# touch_logo_up = False
-# def start_touch_logo_up_event():
-#     # on touch logo down set was pressed to true
-#     if pin_logo.is_touched() and not T_L_WAS_PRESSED:
-#         T_L_WAS_PRESSED = True
-#     # when logo isnt being touched but was touched is true set the _up to true
-#     elif T_L_WAS_PRESSED:
-#         touch_logo_up = True
-
-
-# # reset touch logo
-# def end_touch_logo_up_event():
-#     touch_logo_up = False
+TL_was_pressed = False
+def touch_logo_was_pressed():
+    if TL_was_pressed:
+        TL_was_pressed = False
+        return True
+    return False
     
         
 
 # Entry point
 while True:
     # start_touch_logo_up_event()
+    # TODO: et TL_was_pressed to true when touched
 
     # toggle if the player light is on every second (for blinking)
     if TIME_SINCE_START % BLINK_INTERVAL == 0:
@@ -203,6 +205,9 @@ while True:
     display.show(Image(5, 5, bytearray(show)))
 
 
+    # Player confirms position, places piece, and passes it to the other player
+    # if touch_logo_was_pressed():
+    #     place_piece(player_position, CURRENT_PLAYER)
 
     # Moving the player piece (it wraps)
     # if button_a.was_pressed():  # Conventional controls with touch logo
@@ -213,29 +218,11 @@ while True:
     if button_a.was_pressed(): # controls with no touch logo
         place_piece(player_position, CURRENT_PLAYER)
 
-        # switch players
-        if CURRENT_PLAYER == 1:
-            CURRENT_PLAYER = 2
-        elif CURRENT_PLAYER == 2:
-            CURRENT_PLAYER = 1
-
     if button_b.was_pressed():
         if player_position >= 4:
             player_position = 0
         else:
             player_position += 1
-
-
-    
-    # Player confirms position, places piece, and passes it to the other player
-    # if :
-    #     place_piece(player_position, CURRENT_PLAYER)
-
-    #     # switch players
-    #     if CURRENT_PLAYER == 0:
-    #         CURRENT_PLAYER == 1
-    #     elif CURRENT_PLAYER == 1:
-    #         CURRENT_PLAYER == 0
 
 
     check_win()
