@@ -1,4 +1,5 @@
-# This is a Connect 4 game on the Microbit! 
+# Microbit Projects
+This repo contains projects we did with the Microbit in Team Edge Start.
 
 ## Slowly but surely, we'll add more games onto this repository
 ## 1. [Connect 4](Tests/connect4.py) made by Martin and Mahdi
